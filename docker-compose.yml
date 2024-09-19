@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+
+  brantt_wordpress:
+    build: .
+    user: "1000:1000"
+    ports:
+      - 80:80
+    volumes:
+      - .:/var/www/html
+    environment:
+      - BRANTT_DB_NAME=${BRANTT_DB_NAME}
+      - BRANTT_DB_USER=${BRANTT_DB_USER}
+      - BRANTT_DB_PASSWORD=${BRANTT_DB_PASSWORD}
+      - BRANTT_DB_HOST=${BRANTT_DB_HOST}
+      - BRANTT_AUTH_KEY=${BRANTT_AUTH_KEY}
+      - BRANTT_SECURE_AUTH_KEY=${BRANTT_SECURE_AUTH_KEY}
+      - BRANTT_LOGGED_IN_KEY=${BRANTT_LOGGED_IN_KEY}
+      - BRANTT_NONCE_KEY=${BRANTT_NONCE_KEY}
+      - BRANTT_AUTH_SALT=${BRANTT_AUTH_SALT}
+      - BRANTT_SECURE_AUTH_SALT=${BRANTT_SECURE_AUTH_SALT}
+      - BRANTT_LOGGED_IN_SALT=${BRANTT_LOGGED_IN_SALT}
+      - BRANTT_NONCE_SALT=${BRANTT_NONCE_SALT}
+      - BRANTT_WP_HOME=${BRANTT_WP_HOME}
+      - BRANTT_WP_SITEURL=${BRANTT_WP_SITEURL}
+      - BRANTT_COOKIE_DOMAIN=${BRANTT_COOKIE_DOMAIN}
+      - BRANTT_WP_DEBUG=${BRANTT_WP_DEBUG}
+
+  brantt_db:
+    image: mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: ${BRANTT_DB_PASSWORD}
+    volumes:
+      - brantt_db:/var/lib/mysql
+    ports:
+      - 33068:3306
+
+  brantt_adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+
+volumes:
+  brantt_wordpress:
+  brantt_db:
