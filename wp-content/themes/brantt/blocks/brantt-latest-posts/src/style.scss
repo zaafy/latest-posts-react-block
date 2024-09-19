@@ -1,0 +1,345 @@
+@import 'variables';
+@import 'mixins';
+
+.brantt-latest-posts {
+	background-color: $backgroundColor;
+	padding: 200px 0 148px;
+	position: relative;
+
+	@include breakpoint('desktop') {
+		padding: 100px 0 74px;
+	}
+
+	.container {
+		max-width: 1110px;
+
+		@include breakpoint('desktop') {
+			max-width: 500px;
+		}
+	}
+
+	.brantt-latest-posts-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 18px;
+		line-height: 1;
+	}
+
+	p.brantt-latest-posts-overtitle {
+		width: 50%;
+		color: $redAccent;
+		font-family: $fontStrong;
+		font-size: 26px;
+		font-weight: 700;
+		line-height: 120%;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		margin-bottom: 0;
+
+		@include breakpoint('desktop') {
+			font-size: 18px;
+			letter-spacing: 1px;
+			line-height: 1;
+		}
+	}
+
+	a.brantt-latest-posts-link {
+		width: 50%;
+		text-align: right;
+		color: $greenAccent; 
+		font-family: $fontText;
+		font-size: 20px;
+		font-weight: 700;
+		line-height: 100%;
+		text-decoration-line: underline;
+		position: relative;
+		padding-right: 21px;
+		transition: color .1s ease-in-out;
+
+		@include breakpoint('desktop') {
+			font-size: 16px;
+		}
+
+		&::after {
+			content: '';
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: 6px 0 6px 6px;
+			border-color: transparent transparent transparent $greenAccent;
+			transform: rotate(0deg) translateY(-50%);
+			position: absolute;
+			right: 0;
+			top: 50%;
+			transition: border-color .1s ease-in-out;
+		}
+		
+		&:hover {
+			color: darken($greenAccent, 10%);
+
+			&::after {
+				border-color: transparent transparent transparent darken($greenAccent, 10%);
+			}
+		}
+	}
+
+	h2.brantt-latest-posts-heading {
+		color: $fontColor;
+		font-family: $fontStrong;
+		font-size: 48px;
+		font-weight: 700;
+		line-height: 100%;
+		letter-spacing: 1px;
+		margin-bottom: 46px;
+
+		@include breakpoint('desktop') {
+			font-size: 32px;
+			margin-bottom: 24px;
+		}
+	}
+}
+
+.posts-cards {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: stretch;
+	justify-content: flex-start;
+	gap: 45px 30px;
+
+	@include breakpoint('desktop') {
+		gap: 24px 15px;
+	}
+
+	.posts-cards-thumbnail {
+		position: relative;
+		width: 100%;
+
+		@include breakpoint('desktop') {
+			width: 100%;
+		}
+		
+		img {
+			position: relative;
+			object-fit: cover;
+			object-position: center center;
+			width: 100%;
+			min-height: 100%;
+			height: 217px;
+
+			@include breakpoint('desktop') {
+				height: auto;
+			}
+		}
+
+		&::after {
+			content: '';
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: 175px 0 0 175px;
+			transform: rotate(0deg);
+			display: block;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			mix-blend-mode: multiply;
+		}
+	}
+
+	.posts-cards-card-content {
+		padding: 28px 31px 48px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+
+		@include breakpoint('desktop') {
+			padding: 14px 15px 50px;
+		}
+
+		.posts-cards-featured {
+			margin-bottom: 31px;
+			color: $redAccent;
+			font-family: $fontStrong;
+			font-size: 14px;
+			font-weight: 700;
+			line-height: 100%;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			display: flex;
+			align-items: center;
+			width: 100%;
+
+			@include breakpoint('desktop') {
+				margin-bottom: 12px;
+			}
+	
+			svg {
+				display: block;
+				margin-right: 8px;
+			}
+		}
+
+		h3 {
+			color: $fontColor;
+			font-family: $fontStrong;
+			font-size: 22px;
+			font-weight: 700;
+			letter-spacing: 1px;
+			text-transform: uppercase;
+			margin-bottom: 12px;
+			max-width: 270px;
+			width: 100%;
+
+			@include breakpoint('desktop') {
+				max-width: 100%;
+				font-size: 22px;
+				margin-bottom: 8px;
+			}
+		}
+
+		p {
+			width: 100%;
+			color: $fontColor;
+			font-family: $fontText;
+			font-size: 19px;
+			font-weight: 400;
+			line-height: 145%;
+			margin-bottom: 0;
+
+			@include breakpoint('desktop') {
+				font-size: 16px;
+			}
+		}
+	}
+	
+	.posts-cards-card-popup {
+		pointer-events: none;
+		opacity: 0;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: 12px 30px;
+		background-color: $greenAccent;
+		color: $white;
+		font-family: $fontText;
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		transform: translateY(100%);
+		transition: opacity .2s, transform .2s ease-in-out;
+
+		@include breakpoint('desktop') {
+			font-size: 16px;
+			line-height: 18px;
+			padding: 10px 15px;
+			opacity: 1;
+			pointer-events: all;
+			transform: translateY(0);
+		}
+	}
+
+	.posts-cards-card {
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: flex-start;
+		justify-content: flex-start;
+		background-color: $white;
+		border-radius: 4px;
+		width: calc((100% - 60px) / 3);
+		position: relative;
+		transition: filter .2s, transform .2s ease-in-out;
+		overflow: hidden;
+
+		@include breakpoint('desktop') {
+			width: 100%;
+		}
+
+		&:hover {
+			filter: drop-shadow(0px 10px 35px rgba(0, 0, 0, 0.15));
+			transform: translateY(-8px);
+			
+			@include breakpoint('desktop') {
+				transform: translateY(0);
+			}
+
+			.posts-cards-card-popup {
+				pointer-events: all;
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		&:nth-child(1) .posts-cards-thumbnail::after {
+			border-color: transparent transparent transparent transparent;
+		}
+
+		&:nth-child(2) .posts-cards-thumbnail::after {
+			border-color: transparent transparent transparent $green;
+		}
+
+		&:nth-child(3) .posts-cards-thumbnail::after {
+			border-color: transparent transparent transparent $red;
+		}
+
+		&:nth-child(4) .posts-cards-thumbnail::after {
+			border-color: transparent transparent transparent $yellow;
+		}
+
+		&--first {
+			width: 100%;
+			flex-flow: row nowrap;
+			align-items: center;
+			justify-content: center;
+			min-height: 274px;
+
+			@include breakpoint('desktop') {
+				flex-flow: column nowrap;
+				align-items: flex-start;
+				justify-content: flex-start;
+			}
+
+			.posts-cards-thumbnail {
+				flex: 1 1 369px;
+				height: 100%;
+
+				@include breakpoint('desktop') {
+					flex: 1 1 auto;
+				}
+
+				img {
+					height: 100%;
+				}
+			}
+
+			.posts-cards-card-content {
+				width: calc(100% - 369px);
+				flex: 1 1 auto;
+				padding: 20px 20px 20px 65px;
+
+				@include breakpoint('desktop') {
+					width: 100%;
+					padding: 14px 15px 50px;
+				}
+			}
+
+			h3 {
+				max-width: 100%;
+			}
+
+			.posts-cards-card-popup {
+				left: 369px;
+
+				@include breakpoint('desktop') {
+					left: 0;
+				}
+
+			}
+		}
+	}
+}

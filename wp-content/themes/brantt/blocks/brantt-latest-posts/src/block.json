@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "create-block/brantt-latest-posts",
+	"version": "0.1.0",
+	"title": "Brantt Latest Posts",
+	"category": "widgets",
+	"description": "Display latest posts form your blog.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "brantt-latest-posts",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"attributes": {
+		"title": {
+			"type": "string"
+		},
+		"overtitle": {
+			"type": "string"
+		},
+		"order": {
+			"type": "boolean"
+		},
+		"urlTitle": {
+			"type": "string"
+		},
+		"urlValue": {
+			"type": "string"
+		}
+	}
+}
